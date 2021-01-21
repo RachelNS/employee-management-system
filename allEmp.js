@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const start = require("./index.js");
+const table = require("console.table");
 
 // Connect to the employee_management database
 const connection = mysql.createConnection({
@@ -21,13 +22,11 @@ connection.connect(function (err) {
 // Display all entries in the employees table
 function allEmp() {
     connection.query(
-        "SELECT * FROM employee", (err, res) => {
+        "SELECT * FROM employee JOIN role ON employee.role_id = role.id JOIN departments ON role.department_id = departments.id", (err, res) => {
             if (err) throw err;
             console.table(res);
-            start.start();
         }
     )
 };
 
-allEmp();
 module.exports = {allEmp};

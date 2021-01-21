@@ -1,6 +1,9 @@
+const { SSL_OP_EPHEMERAL_RSA } = require("constants");
 const inquirer = require("inquirer");
 const mysql = require("mysql");
+const table = require("console.table");
 const allEmp = require("./allEmp.js");
+// const addEmp = require("./addEmp.js");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -60,5 +63,13 @@ function start() {
 
 };
 
-module.exports = {start};
+start();
+
+
+
+   
+
+
+
+
 
