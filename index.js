@@ -1,5 +1,4 @@
 // Dependencies
-const { SSL_OP_EPHEMERAL_RSA } = require("constants");
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const table = require("console.table");
