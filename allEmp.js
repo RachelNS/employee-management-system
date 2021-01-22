@@ -1,3 +1,4 @@
+// Dependencies
 const mysql = require("mysql");
 const start = require("./index.js");
 const table = require("console.table");
@@ -5,11 +6,8 @@ const table = require("console.table");
 // Connect to the employee_management database
 const connection = mysql.createConnection({
     host: "localhost",
-
     port: 3306,
-
     user: "root",
-
     password: "password",
     database: "employee_management"
 });
