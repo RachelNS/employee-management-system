@@ -15,10 +15,12 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
+// Fetch all entiries in employee table
 function updateMgm() {
     connection.query(
         "SELECT * FROM employee", (err, res) => {
             if (err) throw err;
+            // Pull out the name and id values and push them into the emp array
             const emp = [];
             for (i = 0; i < res.length; i++) {
                 emp.push({
@@ -26,6 +28,7 @@ function updateMgm() {
                     value: `${res[i].id}`
                 })
             };
+            // Take user input and update the selected employee's manager id to match the id of the selected manager
             inquirer.prompt([{
                 type: "list",
                 name: "emp",
@@ -52,5 +55,5 @@ function updateMgm() {
 }
 
 
-
+// Export for index.js dependencies
 module.exports = {updateMgm};

@@ -15,10 +15,12 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
+// Fetch all entiries in employee table
 function updateRole() {
     connection.query(
         "SELECT * FROM employee JOIN role ON employee.role_id = role.id", (err, res) => {
             if (err) throw err;
+            // Pull out the name and id values in both employee and role and push them into the emp and role arrays
             const emp = [];
             const role = [];
             for (i = 0; i < res.length; i++) {
@@ -35,6 +37,7 @@ function updateRole() {
                 })
             };
 
+            // Take user input and update the selected employee's role to match the corresponding role id on the role table
             inquirer.prompt([{
                 type: "list",
                 name: "emp",
@@ -61,4 +64,5 @@ function updateRole() {
     )
 }
 
+// Export for index.js dependencies
 module.exports = {updateRole};

@@ -75,4 +75,5 @@ function addEmp() {
     );
 }
 
+// Export for index.js dependencies
 module.exports = {addEmp};

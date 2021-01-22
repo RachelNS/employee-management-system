@@ -15,10 +15,12 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
+// Fetch all entries in the departments table
 function empByDept() {
     connection.query(
         "SELECT * FROM departments", (err, res) => {
             if (err) throw err;
+            // Pull out the name and id values and push them into the dept array
             const dept = [];
             for (i = 0; i < res.length; i++) {
                 dept.push({
@@ -26,6 +28,7 @@ function empByDept() {
                     value: `${res[i].id}`
                 })
             };
+            // Take user input and display all employees whose role id corresponds to a role in the selected department
             inquirer.prompt([{
                 type: "list",
                 name: "department",
@@ -51,5 +54,5 @@ function empByDept() {
 
 }
 
-
+// Export for index.js dependencies
 module.exports = { empByDept };

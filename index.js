@@ -25,6 +25,7 @@ connection.connect(function (err) {
     // console.log("connected as id " + connection.threadId + "\n");
 });
 
+
 // Ask user what they would like to do
 function start() {
 
@@ -63,10 +64,10 @@ function start() {
                 connection.end();
                 break;
         }
-    })
+    })};
 
 
-};
+
 
 start();
 

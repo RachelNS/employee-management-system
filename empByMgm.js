@@ -15,10 +15,12 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
+// Display all entries in the employee table
 function empByMgm() {
     connection.query(
         "SELECT * FROM employee", (err, res) => {
             if (err) throw err;
+            // Pull out the name and id values and push them into the emp array
             const emp = [];
             for (i = 0; i < res.length; i++) {
                 emp.push({
@@ -26,6 +28,7 @@ function empByMgm() {
                     value: `${res[i].id}`
                 })
             };
+            // Take user input and display all employees whose manager id matches the id of the selected manager
             inquirer.prompt([{
                 type: "list",
                 name: "manager",
@@ -51,4 +54,5 @@ function empByMgm() {
 
 }
 
+// Export for index.js dependencies
 module.exports = { empByMgm };

@@ -27,4 +27,5 @@ function allEmp() {
     )
 };
 
+// Export for index.js dependencies
 module.exports = {allEmp};
