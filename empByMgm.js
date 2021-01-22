@@ -15,35 +15,40 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
-function remEmp() {
+function empByMgm() {
     connection.query(
-        "SELECT first_name, last_name, id FROM employee", (err, res) => {
+        "SELECT * FROM employee", (err, res) => {
             if (err) throw err;
-            // Grab name and id of all employees and push them into toDelete array
-            const toDelete = [];
+            const emp = [];
             for (i = 0; i < res.length; i++) {
-                toDelete.push({
+                emp.push({
                     name: `${res[i].first_name} ${res[i].last_name}`,
                     value: `${res[i].id}`
                 })
             };
-            // Ask user which employee to delete
             inquirer.prompt([{
                 type: "list",
-                name: "bye",
-                message: "Which employee would you like to remove?",
-                choices: toDelete
-            }]).then(({bye}) => {
+                name: "manager",
+                message: "Please select a manager.",
+                choices: emp
+            }]).then(({ manager }) =>
                 connection.query(
-                    "DELETE FROM employee WHERE id =?", [bye], (err, res) => {
+                    "SELECT * FROM employee WHERE manager_id= ?", [manager], (err, res) => {
                         if (err) throw err;
+                        for (i = 0; i < res.length; i++) {
+                            console.log(`${res[i].first_name} ${res[i].last_name}`);
+                        }
+
                     }
+
                 )
-            })
+            )
 
         }
-    );
+
+    )
+
 
 }
 
-module.exports = { remEmp };
+module.exports = { empByMgm };

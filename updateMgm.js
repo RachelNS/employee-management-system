@@ -15,35 +15,42 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
-function remEmp() {
+function updateMgm() {
     connection.query(
-        "SELECT first_name, last_name, id FROM employee", (err, res) => {
+        "SELECT * FROM employee", (err, res) => {
             if (err) throw err;
-            // Grab name and id of all employees and push them into toDelete array
-            const toDelete = [];
+            const emp = [];
             for (i = 0; i < res.length; i++) {
-                toDelete.push({
+                emp.push({
                     name: `${res[i].first_name} ${res[i].last_name}`,
                     value: `${res[i].id}`
                 })
             };
-            // Ask user which employee to delete
             inquirer.prompt([{
                 type: "list",
-                name: "bye",
-                message: "Which employee would you like to remove?",
-                choices: toDelete
-            }]).then(({bye}) => {
+                name: "emp",
+                message: "Which employee would you like to update?",
+                choices: emp
+            },
+            {
+                type: "list",
+                name: "manager",
+                message: "Who should the new manager be?",
+                choices: emp
+            }]).then(response => {
                 connection.query(
-                    "DELETE FROM employee WHERE id =?", [bye], (err, res) => {
-                        if (err) throw err;
+                    `UPDATE employee SET manager_id = ${response.manager} WHERE id = ${response.emp}`, (err, res) => {
+                        if(err) throw err;
+                        console.table(res);
                     }
                 )
             })
 
         }
-    );
 
+    )
 }
 
-module.exports = { remEmp };
+
+
+module.exports = {updateMgm};

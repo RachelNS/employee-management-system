@@ -4,8 +4,12 @@ const inquirer = require("inquirer");
 const mysql = require("mysql");
 const table = require("console.table");
 const allEmp = require("./allEmp.js");
-// const addEmp = require("./addEmp.js");
+const addEmp = require("./addEmp.js");
 const remEmp = require("./remEmp");
+const empByDept = require("./empByDept");
+const updateMgm = require("./updateMgm");
+const updateRole = require("./updateRole");
+const empByMgm = require("./empByMgm");
 
 // Connect to the employee_management database
 const connection = mysql.createConnection({
@@ -34,25 +38,25 @@ function start() {
         // Call different functions based on response
         switch(action) {
             case "View All Employees":
-                allEmp();
+                allEmp.allEmp();
                 break;
             case "View All Employees By Department":
-                console.log("department my dude");
+                empByDept.empByDept();
                 break;
             case "View All Employees By Manager":
-                console.log("manager my dude");
+                empByMgm.empByMgm();
                 break;
             case "Add Employee":
-                console.log("adding employee my dude");
+                addEmp.addEmp();
                 break;
             case "Remove Employee":
                 remEmp.remEmp();
                 break;
             case "Update Employee Role":
-                console.log("updating employee role my dude");
+                updateRole.updateRole();
                 break;
             case "Update Employee Manager":
-                console.log("updating employee manager my dude");
+                updateMgm.updateMgm();
                 break;
             case "Exit":
                 console.log("Bye");

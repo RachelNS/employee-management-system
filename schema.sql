@@ -52,12 +52,21 @@ VALUES ("Chaos Manager", 500000.00, 4);
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("Kevin", "Whocares", 1);
+INSERT INTO employee (first_name, last_name, role_id)
+VALUES ("Derek", "Istheworst", 1);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ("Melina", "Markland", 1, 1);
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("Wanda", "Sykes", 2);
+INSERT INTO employee (first_name, last_name, role_id)
+VALUES ("Colin", "Robinson", 2);
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("Helen", "Kress", 3);
+INSERT INTO employee (first_name, last_name, role_id)
+VALUES ("Karen", "Lastname", 3);
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("The", "Cat", 4);
